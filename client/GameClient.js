@@ -24,7 +24,7 @@ class GameClient {
             console.log('Connection closed.')
         })
 
-        this.connect('ws://localhost:8001')
+        this.connect('https://aqueous-harbor-83898.herokuapp.com')
         // optional: send an object to the server with data from client
         //this.connect('ws://localhost:8001', { sessionKey: 'example123456789' })
     }
