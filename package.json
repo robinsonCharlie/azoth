@@ -39,5 +39,20 @@
   "scripts": {
     "build": "webpack",
     "start": "concurrently \"node ./node_modules/webpack/bin/webpack.js --watch\" \"nodemon ./server/fileServer.js\" \"nodemon ./server/server.js --port 8001 --map overworld.json\" \"nodemon ./server/server.js --port 8002 --map underworld.json\""
-  }
+  },
+  "name": "tiled",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinsonCharlie/azoth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robinsonCharlie/azoth/issues"
+  },
+  "homepage": "https://github.com/robinsonCharlie/azoth#readme",
+  "description": ""
 }
