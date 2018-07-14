@@ -53,7 +53,8 @@ class GameServer {
 
 
         console.log('Starting game server on port', port, 'and map', mapName)
-        this.instance.listen(port)
+        //this.instance.listen(port)
+        this.instance.listen(process.env.PORT, process.env.IP)
     }
 
     spawnPlayer(client) {        

@@ -164,12 +164,12 @@ module.exports = Binary;
 
 
 function createEnum(values) {
-  var enumm = {};
-  for (var i = 0; i < values.length; i++) {
-    var value = values[i];
-    enumm[value] = i;
-  }
-  return enumm;
+    var enumm = {};
+    for (var i = 0; i < values.length; i++) {
+        var value = values[i];
+        enumm[value] = i;
+    }
+    return enumm;
 }
 
 var BinaryType = createEnum(['Null', 'Boolean', 'UInt2', 'UInt3', 'UInt4', 'UInt5', 'UInt6', 'UInt7', 'UInt8', 'UInt9', 'UInt10', 'UInt11', 'UInt12', 'UInt16', 'UInt32', 'Int4', 'Int6', 'Int8', 'Int10', 'Int16', 'Int32', 'Float32', 'Float64', 'EntityId', 'Rotation8', 'ASCIIString', 'UTF8String', 'RGB888']);
@@ -1259,7 +1259,7 @@ function EntityProtocol(schemaConfig, config, optSchemaConfig) {
         if (typeof schemaConfig.x === 'undefined') {
             throw new Error('EntitySchema must define x.')
         }
-         if (typeof schemaConfig.y === 'undefined') {
+          if (typeof schemaConfig.y === 'undefined') {
             throw new Error('EntitySchema must define y.')
         }
         */
@@ -3197,8 +3197,8 @@ Client.prototype.interpolate = function (interpDelay) {
                 var total = snapshotOlder.timestamp + this.tickLength - snapshotOlder.timestamp
                 var portion = renderTime - snapshotOlder.timestamp        
                 var ratio = portion / total
-                 iSnapshot.timestamp = lerp(snapshotOlder.timestamp, snapshotNewer.timestamp, ratio)
-                 //console.log('snapshots', snapshotNewer.tick, snapshotOlder.tick)
+                  iSnapshot.timestamp = lerp(snapshotOlder.timestamp, snapshotNewer.timestamp, ratio)
+                  //console.log('snapshots', snapshotNewer.tick, snapshotOlder.tick)
                 for (var i = 0; i < snapshotNewer.updateEntities.length; i++) {
                     var update = snapshotNewer.updateEntities[i]
                     var entityOlder = snapshotOlder.entities.get(update.id)
@@ -3211,23 +3211,23 @@ Client.prototype.interpolate = function (interpDelay) {
                     }
                     var binaryType = Binary[propData.type]
                     //console.log(prop, '::', entityOlder.protocol.properties[prop])
-                     if (propData.interp) {
+                      if (propData.interp) {
                         var entityNewer = snapshotNewer.entities.get(update.id)
                         var valueOlder = getValue(entityOlder, propData.path) //entityOlder[prop]
                         var valueNewer = getValue(entityNewer, propData.path) //entityNewer[prop]
-                         var valueInterp = valueOlder
-                         if (typeof binaryType.interp === 'function') {
+                          var valueInterp = valueOlder
+                          if (typeof binaryType.interp === 'function') {
                             valueInterp = binaryType.interp(valueOlder, valueNewer, ratio)
                         } else {
                             valueInterp = lerp(valueOlder, valueNewer, ratio)
                         }            
-                         iSnapshot.updateEntities.push({
+                          iSnapshot.updateEntities.push({
                             id: entityOlder.id,
                             prop: prop,
                             path: propData.path,
                             value: valueInterp
                         })
-                     } else {
+                      } else {
                         iSnapshot.updateEntities.push(update)
                     }
                 }
@@ -3366,7 +3366,7 @@ Client.prototype.connect = function (address, handshake) {
                     totalPing += this.pings[i]
                 }
                 this.averagePing = totalPing / this.pings.length
-                 if (this.pings.length > 5) {
+                  if (this.pings.length > 5) {
                     this.pings.shift()
                 }
                 //console.log(worldState.ping, 'avg', this.averagePing)
@@ -6309,18 +6309,18 @@ var BinaryType = __webpack_require__(1);
 var Chunk = __webpack_require__(3).Chunk;
 
 function createHandshakeBuffer(handshake) {
-   var json = JSON.stringify(handshake);
+    var json = JSON.stringify(handshake);
 
-   var bits = 8;
-   bits += Binary[BinaryType.UTF8String].countBits(json);
+    var bits = 8;
+    bits += Binary[BinaryType.UTF8String].countBits(json);
 
-   var bitBuffer = new BitBuffer(bits);
-   var bitStream = new BitStream(bitBuffer);
+    var bitBuffer = new BitBuffer(bits);
+    var bitStream = new BitStream(bitBuffer);
 
-   bitStream.writeUInt8(Chunk.Handshake);
-   Binary[BinaryType.UTF8String].write(bitStream, json);
+    bitStream.writeUInt8(Chunk.Handshake);
+    Binary[BinaryType.UTF8String].write(bitStream, json);
 
-   return bitBuffer;
+    return bitBuffer;
 }
 
 module.exports = createHandshakeBuffer;
