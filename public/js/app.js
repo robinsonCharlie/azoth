@@ -1677,7 +1677,8 @@ var GameClient = function () {
             console.log('Connection closed.');
         });
 
-        this.connect('ws://localhost:8001');
+        this.connect('ws://45.79.164.171:8001');
+       // this.connect('ws://localhost:8001');
         // optional: send an object to the server with data from client
         //this.connect('ws://localhost:8001', { sessionKey: 'example123456789' })
     }
