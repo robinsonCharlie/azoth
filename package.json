@@ -1,0 +1,43 @@
+{
+  "dependencies": {
+    "concurrently": "^3.5.0",
+    "json-stream": "1.0.0",
+    "node-static": "0.7.9",
+    "nodemon": "^1.12.0",
+    "sat": "^0.6.0",
+    "unicode-substring": "0.1.0",
+    "utf-8-validate": "^1.2.2",
+    "utf8": "2.1.2",
+    "uuid": "^3.1.0",
+    "uws": "8.14.1",
+    "ws": "^3.1.0",
+    "yargs": "6.5.0",
+    "yargs-parser": "^7.0.0"
+  },
+  "transform": [
+    [
+      "babelify",
+      {
+        "comments": false
+      }
+    ]
+  ],
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-uglify": "^1.0.2",
+    "babel-preset-latest": "^6.16.0",
+    "babelify": "^7.3.0",
+    "babili": "0.0.11",
+    "webpack": "^3.5.5"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "concurrently \"node ./node_modules/webpack/bin/webpack.js --watch\" \"nodemon ./server/fileServer.js\" \"nodemon ./server/server.js --port 8001 --map overworld.json\" \"nodemon ./server/server.js --port 8002 --map underworld.json\""
+  }
+}
